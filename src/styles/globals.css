@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+ @apply scrollbar-thin scrollbar-track-zinc-300 scrollbar-thumb-zinc-400 dark:scrollbar-track-zinc-700 dark:scrollbar-thumb-zinc-500 scrollbar-thumb-rounded; 
+}
+
+*::not(.Toastify) {
+  @apply text-zinc-700 dark:text-zinc-50  m-0 p-0;
+}
+
+:root {
+  --toastify-text-color-light: #FFFFFF;
+  --toastify-text-color-dark: #FFFFFF;
+  --toastify-color-success: #22c55e;  
+}
+
+input[type="text"], 
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"] {
+  @apply border-none outline-none focus:outline-none focus:ring-0 focus:border-none leading-none p-0;
+}
+
+html {
+  scroll-behavior: smooth;
+}

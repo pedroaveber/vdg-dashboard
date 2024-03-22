@@ -1,0 +1,10 @@
+export type RoutesType =
+  | 'noticia'
+  | 'banner'
+  | 'evento'
+  | 'convenio'
+  | 'feed'
+  | 'enquete'
+  | 'comentarios'
+  | 'pagamentos'
+  | 'channels'
