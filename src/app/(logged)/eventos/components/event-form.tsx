@@ -224,9 +224,19 @@ export function EventForm({ prevValues = null }: EventFormProps) {
       />
 
       <FormComponents.FileInput
-        label="Imagem"
+        label="Imagem capa"
         imagePreview={defaultValues?.imagePath || null}
         setImagePreview={(previewUrl) => setValue('imagePath', previewUrl)}
+        errorMessage={errors.imagePath?.message as string}
+        aspectRatio="news"
+      />
+
+      <FormComponents.FileInput
+        label="Imagem evento"
+        imagePreview={defaultValues?.imagePath || null}
+        setImagePreview={(previewUrl) =>
+          setValue('backgroundImagePath', previewUrl)
+        }
         errorMessage={errors.imagePath?.message as string}
         aspectRatio="news"
       />

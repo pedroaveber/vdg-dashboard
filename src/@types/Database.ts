@@ -78,6 +78,7 @@ export interface EventType extends DatabaseCoreType {
   description: string
   privacy: PrivacyType
   paymentManagement: boolean
+  backgroundImagePath: string
   subtitle?: string | null
   alertMessage?: string | null
   price?: number | null

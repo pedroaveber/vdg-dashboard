@@ -64,14 +64,15 @@ export const useEventForm = ({ prevValues = null }: useEventFormProps) => {
     zipcode: prevValues?.zipcode ?? '',
     address: prevValues?.address ?? '',
     subtitle: prevValues?.subtitle ?? '',
-    imagePath: prevValues?.imagePath ?? null,
     complement: prevValues?.complement ?? '',
+    imagePath: prevValues?.imagePath ?? null,
     description: prevValues?.description ?? '',
     neighborhood: prevValues?.neighborhood ?? '',
     alertMessage: prevValues?.alertMessage ?? '',
     active: prevValues ? prevValues.active : false,
     privacy: prevValues?.privacy ?? 'VIP_MEMBERS_ONLY',
     paymentManagement: prevValues?.paymentManagement ?? false,
+    backgroundImagePath: prevValues?.backgroundImagePath ?? null,
 
     price: prevValues?.price
       ? CurrencyFormatter.formatAsCurrencyFromNumber(prevValues?.price)
@@ -118,6 +119,23 @@ export const useEventForm = ({ prevValues = null }: useEventFormProps) => {
       data.imagePath = imagePath
     }
 
+    if (
+      data.backgroundImagePath &&
+      typeof data.backgroundImagePath !== 'string'
+    ) {
+      if (prevValues?.backgroundImagePath) {
+        await EventsService.deleteImageFromStorage({
+          url: prevValues.backgroundImagePath,
+        })
+      }
+
+      const imagePath = await EventsService.uploadFile({
+        file: data.backgroundImagePath,
+      })
+
+      data.backgroundImagePath = imagePath
+    }
+
     prevValues
       ? updateEventFn(
           updateEventMapper({
@@ -130,6 +148,7 @@ export const useEventForm = ({ prevValues = null }: useEventFormProps) => {
           createEventMapper({
             ...data,
             imagePath: data.imagePath!,
+            backgroundImagePath: data.backgroundImagePath!,
           }),
         )
   }

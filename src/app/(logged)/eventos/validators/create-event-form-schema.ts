@@ -71,6 +71,7 @@ export const createEventFormSchema = z
     price: z.string().nullable().default(null).optional(),
 
     imagePath: z.any(),
+    backgroundImagePath: z.any(),
   })
   .superRefine((data, ctx) => {
     if (data.link && !URL_PATTERN.test(data.link)) {
@@ -95,6 +96,33 @@ export const createEventFormSchema = z
           code: 'custom',
           message: 'Tipo de arquivo não permitido',
           path: ['imagem'],
+        })
+      }
+    }
+
+    if (
+      data.backgroundImagePath &&
+      typeof data.backgroundImagePath !== 'string'
+    ) {
+      if (
+        data.backgroundImagePath &&
+        data.backgroundImagePath.size > MAX_FILE_SIZE
+      ) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Imagem muito grande',
+          path: ['backgroundImagePath'],
+        })
+      }
+
+      if (
+        data.backgroundImagePath &&
+        !ALLOWED_FILE_TYPES.includes(data.backgroundImagePath.type)
+      ) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Tipo de arquivo não permitido',
+          path: ['backgroundImagePath'],
         })
       }
     }
