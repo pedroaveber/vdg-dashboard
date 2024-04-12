@@ -12,7 +12,15 @@ import { Pagination } from '@/components/common/pagination'
 export default function Banners() {
   const { data, error, isLoading } = useQuery({
     queryKey: ['news-general'],
-    queryFn: () => newsServices.index(),
+    queryFn: async () => {
+      const news = await newsServices.index()
+      return news.sort((a, b) =>
+        new Date(a.date.concat('T00:00:00')) >
+        new Date(b.date.concat('T00:00:00'))
+          ? -1
+          : 1,
+      )
+    },
   })
 
   const {
