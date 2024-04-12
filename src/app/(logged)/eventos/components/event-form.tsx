@@ -220,6 +220,7 @@ export function EventForm({ prevValues = null }: EventFormProps) {
         label="Mensagem de alerta"
         errorMessage={errors.alertMessage?.message}
         register={register('alertMessage')}
+        maxLength={85}
         type="text"
       />
 
