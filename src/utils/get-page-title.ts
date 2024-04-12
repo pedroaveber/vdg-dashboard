@@ -55,5 +55,9 @@ export function getPageTitle(currentRoute: string) {
     return 'Canais'
   }
 
+  if (currentRoute.includes('campeonato')) {
+    return 'Campeonatos'
+  }
+
   return 'Dashboard'
 }

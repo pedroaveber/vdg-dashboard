@@ -13,6 +13,7 @@ import {
   Users,
   Play,
   Wallet,
+  Trophy,
 } from 'lucide-react'
 
 import { AiFillIdcard } from 'react-icons/ai'
@@ -75,6 +76,13 @@ export const navItems: Array<NavItem> = [
     name: 'Canais',
     value: 'channels',
     Icon: Play,
+    disabled: false,
+  },
+  {
+    href: '/campeonatos',
+    name: 'Campeonatos',
+    value: 'leagues',
+    Icon: Trophy,
     disabled: false,
   },
   {

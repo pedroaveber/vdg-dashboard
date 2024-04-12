@@ -30,6 +30,10 @@ export interface BannerType extends DatabaseCoreType {
   link?: string | null
 }
 
+export interface LeagueType extends DatabaseCoreType {
+  data: string[]
+}
+
 export interface NewsType extends DatabaseCoreType {
   title: string
   imagePath: string
