@@ -216,11 +216,11 @@ export function EventForm({ prevValues = null }: EventFormProps) {
         setContent={(content) => setValue('description', content)}
       />
 
-      <FormComponents.Editor
+      <FormComponents.Input
         label="Mensagem de alerta"
         errorMessage={errors.alertMessage?.message}
-        content={defaultValues?.alertMessage || null}
-        setContent={(content) => setValue('alertMessage', content)}
+        register={register('alertMessage')}
+        type="text"
       />
 
       <FormComponents.FileInput
