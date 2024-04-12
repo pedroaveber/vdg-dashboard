@@ -233,7 +233,7 @@ export function EventForm({ prevValues = null }: EventFormProps) {
 
       <FormComponents.FileInput
         label="Imagem evento"
-        imagePreview={defaultValues?.imagePath || null}
+        imagePreview={defaultValues?.backgroundImagePath || null}
         setImagePreview={(previewUrl) =>
           setValue('backgroundImagePath', previewUrl)
         }
