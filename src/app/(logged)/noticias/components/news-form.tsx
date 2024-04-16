@@ -26,8 +26,6 @@ export function NewsForm({
     submitNewsForm,
   } = useNewsForm({ prevValues })
 
-  console.log('defaultValues', defaultValues)
-
   return (
     <form
       className="mx-auto w-full space-y-4 pb-24"

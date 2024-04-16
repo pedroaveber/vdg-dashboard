@@ -22,6 +22,10 @@ export function Sibdebar() {
           height={80}
           alt="Vozes do Gigante"
         />
+
+        <span className="ml-auto mt-auto pb-3 text-right text-xs text-gray-600">
+          v.1.0.0
+        </span>
       </div>
 
       <Navigation />

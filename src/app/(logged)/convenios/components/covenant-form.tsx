@@ -21,6 +21,8 @@ export function CovenantForm({ prevValues = null }: CovenantFormProps) {
     submitCovenantForm,
   } = useCovenantForm({ prevValues })
 
+  console.log(prevValues)
+
   return (
     <form
       className="w-full space-y-4 pb-24"
