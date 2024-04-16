@@ -68,6 +68,7 @@ export interface CovenantType extends DatabaseCoreType {
   imagePath: string
   description: string
   privacy: PrivacyType
+  slogan?: string | null
   link?: string | null
   qrCode?: string | null
   externalCode?: string | null

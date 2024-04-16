@@ -40,8 +40,6 @@ export default function Feeds() {
 
   if (!data || isLoading) return <FeedPageSkeleton />
 
-  console.log('data', data)
-
   return (
     <>
       <div className="flex flex-col items-start justify-between md:flex-row md:items-center">

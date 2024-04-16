@@ -29,7 +29,6 @@ export default function Live() {
       where('id', '==', 'highlighted'),
     )
     onSnapshot(q, (querySnapshot) => {
-      console.log(querySnapshot)
       if (querySnapshot.empty) {
         setData(null)
       }

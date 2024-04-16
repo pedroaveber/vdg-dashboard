@@ -39,7 +39,6 @@ export class Services<T extends { id: string }> {
 
   public async index(): Promise<T[]> {
     const accessToken = await this.getAccessToken()
-    console.log('accessToken', accessToken)
     const response = await this.api(`/query/${this.collection}`, {
       method: 'GET',
       headers: {

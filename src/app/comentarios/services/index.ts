@@ -7,7 +7,6 @@ import { FirebaseAuth } from '@/lib/firebase/auth'
 class AppCommentServices extends Services<CommentType> {
   async startLive(liveChatId: string): Promise<void> {
     const accessToken = await FirebaseAuth.auth.currentUser?.getIdToken()
-    console.log('live chat id - ', liveChatId)
     try {
       await this.api('/live/start', {
         method: 'POST',

@@ -9,8 +9,6 @@ export class AuthService extends Services<UserType> {
     email: string
     accessToken: string
   }): Promise<UserType | null> {
-    console.log('accessToken', accessToken)
-
     try {
       const response = await this.api('/query', {
         method: 'POST',

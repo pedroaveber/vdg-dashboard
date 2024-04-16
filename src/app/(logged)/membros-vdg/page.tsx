@@ -391,7 +391,6 @@ export default function VDGMembers() {
 
   async function handleSignIn() {
     const variable = await signIn()
-    console.log('RETURN', variable)
   }
 
   useEffect(() => {

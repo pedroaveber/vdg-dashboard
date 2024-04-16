@@ -134,7 +134,6 @@ export function GeneralTransactions() {
                 })
 
                 if (months && days) {
-                  console.log(days + months * 30)
                   setDaysToSearch(days + months * 30)
                 } else {
                   setDaysToSearch(days || 0)

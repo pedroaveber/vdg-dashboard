@@ -58,6 +58,7 @@ export function useCovenantForm({ prevValues = null }: useCovenantFormProps) {
     privacy: prevValues?.privacy || 'PUBLIC',
     description: prevValues?.description || '',
     externalCode: prevValues?.externalCode || '',
+    slogan: prevValues?.slogan || '',
   }
 
   const {
@@ -92,26 +93,26 @@ export function useCovenantForm({ prevValues = null }: useCovenantFormProps) {
         })
       }
 
-      const imagePath = await CovenantsService.uploadFile({
+      const logoPath = await CovenantsService.uploadFile({
         file: data.logoPath,
       })
 
-      data.logoPath = imagePath
+      data.logoPath = logoPath
     }
 
     if (prevValues) {
-      updateCovenantFn({
+      await updateCovenantFn({
         ...prevValues,
         ...data,
       })
     } else {
-      insertCovenantFn(
-        createCovenantMapper({
-          ...data,
-          imagePath: data.imagePath!,
-          logoPath: data.logoPath!,
-        }),
-      )
+      const payload = createCovenantMapper({
+        ...data,
+        imagePath: data.imagePath!,
+        logoPath: data.logoPath!,
+      })
+
+      await insertCovenantFn(payload)
     }
   }
 

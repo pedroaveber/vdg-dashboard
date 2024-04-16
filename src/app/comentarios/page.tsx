@@ -24,7 +24,6 @@ export default function Comments() {
       const liveChatId = dataJson.items[0].liveStreamingDetails.activeLiveChatId
       await commentServices.startLive(liveChatId)
 
-      console.log(liveChatId)
       router.push(`/comentarios/${liveId}?live-chat-id=${liveChatId}`)
     } catch (err: any) {
       console.log(err)

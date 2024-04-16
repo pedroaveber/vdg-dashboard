@@ -69,11 +69,9 @@ export function useBannerForm({ prevValues = null }: UseBannerFormProps) {
   async function submitBannerForm(data: BannerFormSchemaType) {
     if (data.imagePath && typeof data.imagePath !== 'string') {
       if (prevValues?.imagePath) {
-        console.log('chegou aquiiii')
         await BannerService.deleteImageFromStorage({
           url: prevValues.imagePath,
         })
-        console.log('aparentemente deu certo')
       }
 
       const imagePath = await BannerService.uploadFile({

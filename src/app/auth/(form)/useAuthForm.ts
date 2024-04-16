@@ -37,8 +37,6 @@ export function useAuthForm() {
         password,
       })
 
-      // console.log('session', session)
-
       const accessToken = await session.user.getIdToken()
 
       if (accessToken) {
@@ -52,8 +50,6 @@ export function useAuthForm() {
         accessToken,
       })
 
-      console.log('USER => ', user)
-
       if (!user || user.role === 'user') {
         toast.error('Usuário não autorizado!')
         return
@@ -63,8 +59,6 @@ export function useAuthForm() {
       setCurrentuser(user)
 
       const userPolicies = user.policy
-      console.log('userPolicies', userPolicies)
-
       const todayMoreTwoDays = getTwoDaysAfterToday()
 
       const objectToStorage: UserLoggedType = {

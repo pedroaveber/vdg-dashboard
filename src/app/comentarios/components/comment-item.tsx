@@ -92,7 +92,6 @@ export function CommentItem({
 
       <Button
         onClick={() => {
-          console.log('click')
           handleHighlightComment(isHighlighted ? null : comment)
         }}
         className="m-0 ml-auto px-2 py-1 text-xs"

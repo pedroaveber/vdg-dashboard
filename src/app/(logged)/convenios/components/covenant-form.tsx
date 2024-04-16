@@ -41,6 +41,14 @@ export function CovenantForm({ prevValues = null }: CovenantFormProps) {
       />
 
       <FormComponents.Input
+        label="Slogan"
+        type="text"
+        placeholder="Inisira um slogan para o convênio"
+        register={register('slogan')}
+        errorMessage={errors.slogan?.message}
+      />
+
+      <FormComponents.Input
         label="Link"
         type="url"
         placeholder="Inisira um link para o convênio"

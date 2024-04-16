@@ -3,8 +3,6 @@ import type { DisplayPurchase } from './presenters'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/avatar'
 
 export function GeneralPurchaseItem(item: DisplayPurchase) {
-  console.log('item username -> ', item.username)
-
   return (
     <div className="flex w-full items-center justify-between rounded-md border border-zinc-300 p-2">
       <div className="flex items-center justify-start gap-2">

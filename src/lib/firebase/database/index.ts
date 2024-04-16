@@ -137,7 +137,6 @@ export class FirestoreDatabase extends FirebaseStorage {
   public async changeDocumentStatusByPrimaryKey(id: string, active: boolean) {
     try {
       const reference = doc(this.database, this.collection, id)
-      console.log(reference)
       await updateDoc(reference, {
         active,
       })

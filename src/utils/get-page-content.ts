@@ -28,7 +28,6 @@ export async function getPageContent({
     const { documents, quantity } =
       await BannerService.getAllDocuments<BannerType>(Number(page))
 
-    console.log(documents)
     return treatObjectToReturn({ data: documents, quantity })
   }
 

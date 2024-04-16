@@ -20,6 +20,7 @@ export const createCovenantFormSchema = z
       })
       .min(3, 'Mínimo de 3 caracteres'),
     active: z.coerce.boolean().default(true),
+    slogan: z.string().optional().nullable().default(null),
     link: z.string().optional(),
     externalCode: z.string().optional(),
     qrCode: z.string().optional(),

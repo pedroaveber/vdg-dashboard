@@ -100,7 +100,6 @@ export const useLive = () => {
     )
 
     onSnapshot(q, (querySnapshot) => {
-      console.log('chegou aqui')
       updateYoutubeComments(querySnapshot)
     })
   }, [])
