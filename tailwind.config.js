@@ -44,6 +44,7 @@ const config = {
         banner: '6/1',
         news: '30/23',
         logo: '243/416',
+        background: '340/80',
       },
       keyframes: {
         'accordion-down': {

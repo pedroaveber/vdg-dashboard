@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { api } from '../api'
 import { FirebaseAuth } from './auth'
 import Cookies from 'js-cookie'
@@ -50,6 +51,7 @@ export class FirebaseStorage {
 
     try {
       const formData = new FormData()
+
       formData.append('file', file)
       formData.append('bucket', this.bucket)
 

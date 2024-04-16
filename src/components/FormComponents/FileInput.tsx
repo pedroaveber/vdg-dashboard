@@ -15,6 +15,7 @@ const fileInputVariants = tv({
       event: 'h-[463px]',
       sponsor: 'h-[463px]',
       news: 'aspect-news',
+      background: 'aspect-background',
     },
   },
   defaultVariants: {

@@ -112,6 +112,8 @@ export function useCovenantForm({ prevValues = null }: useCovenantFormProps) {
         logoPath: data.logoPath!,
       })
 
+      console.log('payload', payload)
+
       await insertCovenantFn(payload)
     }
   }

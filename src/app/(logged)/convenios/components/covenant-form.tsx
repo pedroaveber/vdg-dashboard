@@ -95,7 +95,7 @@ export function CovenantForm({ prevValues = null }: CovenantFormProps) {
         setContent={(content) => setValue('description', content)}
       />
 
-      <div className="flex flex-col gap-4 md:flex-row md:gap-8">
+      <div className="flex flex-col gap-4 md:gap-8">
         <FormComponents.FileInput
           label="Capa (600x300)"
           imagePreview={defaultValues?.imagePath || null}
@@ -110,7 +110,7 @@ export function CovenantForm({ prevValues = null }: CovenantFormProps) {
           imagePreview={defaultValues?.logoPath || null}
           setImagePreview={(previewUrl) => setValue('logoPath', previewUrl)}
           errorMessage={errors.logoPath?.message as string}
-          aspectRatio="news"
+          aspectRatio="background"
           customDescription={'PNG ou SVG até 2MB'}
           accept="image/*"
         />

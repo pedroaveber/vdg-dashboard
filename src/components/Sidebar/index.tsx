@@ -24,7 +24,7 @@ export function Sibdebar() {
         />
 
         <span className="ml-auto mt-auto pb-3 text-right text-xs text-gray-600">
-          v.1.0.0
+          v.1.0.1
         </span>
       </div>
 
