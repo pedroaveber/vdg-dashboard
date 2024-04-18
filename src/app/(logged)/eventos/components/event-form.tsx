@@ -128,8 +128,8 @@ export function EventForm({ prevValues = null }: EventFormProps) {
           id="date"
           label="Data"
           errorMessage={errors.date?.message}
-          onValueChange={(value) => setValue('validity', value)}
-          value={watch('validity') || null}
+          onValueChange={(value) => setValue('date', value)}
+          value={watch('date') || null}
         />
 
         <FormComponents.Input
@@ -145,8 +145,8 @@ export function EventForm({ prevValues = null }: EventFormProps) {
 
       <div className="grid w-full grid-cols-2 gap-4">
         <FormComponents.Date
-          onValueChange={(value) => setValue('date', value)}
-          value={watch('date') || null}
+          onValueChange={(value) => setValue('validity', value)}
+          value={watch('validity') || null}
           id="validade"
           label="Data máxima de confirmação"
           errorMessage={errors.validity?.message}

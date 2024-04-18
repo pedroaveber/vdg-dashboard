@@ -17,7 +17,9 @@ export function Providers({ children }: ProvidersProps) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000, // 1 minute
+            staleTime: 60 * 1000 * 1, // 1 minute
+            retry: 5,
+            retryDelay: 1000 * 0.5, // 0.5 seconds
           },
         },
       }),

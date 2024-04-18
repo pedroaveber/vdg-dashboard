@@ -146,7 +146,7 @@ export const createEventFormSchema = z
       })
     }
 
-    if (isAfter(eventDate, eventValidityDate)) {
+    if (isAfter(eventValidityDate, eventDate)) {
       ctx.addIssue({
         code: 'custom',
         message: 'Data de validade não pode ser maior que a data do evento',
