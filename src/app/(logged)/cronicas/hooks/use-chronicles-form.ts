@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { chroniclesServices } from '../services'
 import { createChroniclesMapper } from '../mappers'
 import { format, parseISO } from 'date-fns'
+import { ChroniclesService } from '@/lib/firebase/database/chronicles-service'
 
 interface UseChroniclesFormProps {
   prevValues?: ChroniclesType | null
@@ -57,6 +58,7 @@ export function useChroniclesForm({
     content: prevValues?.content || '',
     title: prevValues?.title || '',
     authorship: prevValues?.authorship || '',
+    imagePath: prevValues?.imagePath || null,
   }
 
   const methods = useForm<ChroniclesTypeFormSchema>({
@@ -65,6 +67,20 @@ export function useChroniclesForm({
   })
 
   async function submitChorniclesForm(data: ChroniclesTypeFormSchema) {
+    if (data.imagePath && typeof data.imagePath !== 'string') {
+      if (prevValues?.imagePath) {
+        await ChroniclesService.deleteImageFromStorage({
+          url: prevValues.imagePath,
+        })
+      }
+
+      const imagePath = await ChroniclesService.uploadFile({
+        file: data.imagePath,
+      })
+
+      data.imagePath = imagePath
+    }
+
     prevValues
       ? updateChroniclesFn({
           ...prevValues,
@@ -75,6 +91,7 @@ export function useChroniclesForm({
           createChroniclesMapper({
             ...data,
             date: format(data.date, 'yyyy-MM-dd'),
+            imagePath: data.imagePath!,
           }),
         )
   }

@@ -110,6 +110,7 @@ export interface ChroniclesType extends DatabaseCoreType {
   content: string
   author: string
   authorship: string
+  imagePath: string
   date: string
 }
 

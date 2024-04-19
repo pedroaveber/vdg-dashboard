@@ -60,6 +60,14 @@ export function ChroniclesForm({ prevValues = null }: ChroniclesFormProps) {
         setContent={(content) => setValue('content', content)}
       />
 
+      <FormComponents.FileInput
+        label="Imagem"
+        imagePreview={defaultValues?.imagePath || null}
+        setImagePreview={(previewUrl) => setValue('imagePath', previewUrl)}
+        errorMessage={errors.imagePath?.message as string}
+        aspectRatio="news"
+      />
+
       <FormComponents.Input
         label="Autor"
         type="text"
@@ -69,7 +77,7 @@ export function ChroniclesForm({ prevValues = null }: ChroniclesFormProps) {
       />
 
       <FormComponents.Input
-        label="Autoria"
+        label="Informações sobre o autor"
         type="text"
         placeholder="Inisira a autoria"
         register={register('authorship')}
