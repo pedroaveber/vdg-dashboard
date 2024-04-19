@@ -39,6 +39,10 @@ export function getPageTitle(currentRoute: string) {
     return 'Usuários'
   }
 
+  if (currentRoute.includes('cronicas')) {
+    return 'Crônicas'
+  }
+
   if (currentRoute.includes('membros-vdg')) {
     return 'Membros VDG'
   }

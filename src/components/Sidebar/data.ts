@@ -44,6 +44,13 @@ export const navItems: Array<NavItem> = [
     disabled: false,
   },
   {
+    href: '/cronicas',
+    name: 'Crônicas',
+    value: 'chronicles',
+    Icon: Newspaper,
+    disabled: false,
+  },
+  {
     href: '/feed',
     name: 'Feed',
     value: 'feeds',

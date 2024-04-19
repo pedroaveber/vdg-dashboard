@@ -105,6 +105,14 @@ export interface ChannelType extends DatabaseCoreType {
   type: 'playlist' | 'partners'
 }
 
+export interface ChroniclesType extends DatabaseCoreType {
+  title: string
+  content: string
+  author: string
+  authorship: string
+  date: string
+}
+
 export interface SurveyType extends DatabaseCoreType {
   question: string
   validityDate: string
