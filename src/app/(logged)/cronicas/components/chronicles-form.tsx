@@ -26,6 +26,17 @@ export function ChroniclesForm({ prevValues = null }: ChroniclesFormProps) {
       className="mx-auto w-full space-y-4 pb-24"
       onSubmit={handleSubmit(submitChorniclesForm)}
     >
+      <div className="flex items-center justify-start md:justify-end">
+        <FormComponents.Switch
+          label="Ativar Crônica"
+          onCheckedChange={(checked) => {
+            setValue('active', checked)
+          }}
+          checked={watch('active')}
+          defaultChecked={watch('active')}
+        />
+      </div>
+
       <FormComponents.Input
         label="Título"
         type="text"

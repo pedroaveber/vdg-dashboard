@@ -51,6 +51,7 @@ export function useChroniclesForm({
   })
 
   const defaultValues: ChroniclesTypeFormSchema = {
+    active: prevValues?.active ?? false,
     author: prevValues?.author || '',
     date: prevValues ? parseISO(prevValues.date) : new Date(),
     content: prevValues?.content || '',

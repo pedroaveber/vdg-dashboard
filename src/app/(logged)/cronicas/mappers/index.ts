@@ -14,7 +14,7 @@ export function createChroniclesMapper(
   const chronicles: ChroniclesType = {
     createdAt: data.createdAt ?? format(new Date(), 'dd/MM/yyyy HH:mm:ss'),
     timestamp: data.timestamp ?? new Date().getTime(),
-    active: data.active ?? true,
+    active: data.active ?? false,
     id: data.id ?? uuid(),
     ...data,
   }

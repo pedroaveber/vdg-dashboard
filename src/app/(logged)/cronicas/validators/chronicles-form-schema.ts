@@ -1,6 +1,7 @@
 import { date, z } from 'zod'
 
 export const createChroniclesFormSchema = z.object({
+  active: z.boolean().default(false),
   title: z
     .string()
     .min(3, 'Mínimo 3 caractéres')
