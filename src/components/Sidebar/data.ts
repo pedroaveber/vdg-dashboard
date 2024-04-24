@@ -16,6 +16,7 @@ import {
   Play,
   Wallet,
   Trophy,
+  Share2,
 } from 'lucide-react'
 
 import { AiFillIdcard } from 'react-icons/ai'
@@ -57,6 +58,13 @@ export const navItems: Array<NavItem> = [
     name: 'Feed',
     value: 'feeds',
     Icon: MessageSquareQuote,
+    disabled: false,
+  },
+  {
+    href: '/midias-sociais',
+    name: 'Midias Sociais',
+    value: 'social-midias',
+    Icon: Share2,
     disabled: false,
   },
   {

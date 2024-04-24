@@ -190,6 +190,10 @@ export default function PrivacyPolicyPage() {
                 Anexo B - Documentos Relacionados 9
               </a>
             </li>
+
+            <li>
+              <a href="#exclusao">Exclusao da conta</a>
+            </li>
           </ol>
         </nav>
       </div>
@@ -1033,6 +1037,17 @@ export default function PrivacyPolicyPage() {
             Acordo de Distribuição de Desenvolvedores do Google Play
           </a>
           .
+        </p>
+      </section>
+
+      <section id="exclusao">
+        <h3>Exclusão da conta</h3>
+        <p>
+          Para exclusão da conta, você deve enviar uma e-mail diretamente para
+          prosperapps@gmail.com com o assunto: &quot;EXCLUSAO DE CONTA -
+          VDG&quot;. Assim que sua solicitação for recebida, iremos excluir
+          todos os dados cadastrados no sistema, bem como todas informações
+          relacionadas a sua conta.
         </p>
       </section>
     </main>

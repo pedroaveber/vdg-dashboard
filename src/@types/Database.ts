@@ -114,6 +114,16 @@ export interface ChroniclesType extends DatabaseCoreType {
   date: string
 }
 
+export interface SocialMediaType extends DatabaseCoreType {
+  facebook: string | null
+  instagram: string | null
+  twitter: string | null
+  pinterest: string | null
+  reddit: string | null
+  linkedin: string | null
+  whatsapp: string | null
+}
+
 export interface SurveyType extends DatabaseCoreType {
   question: string
   validityDate: string

@@ -43,6 +43,10 @@ export function getPageTitle(currentRoute: string) {
     return 'Crônicas'
   }
 
+  if (currentRoute.includes('midias-sociais')) {
+    return 'Mídias Sociais'
+  }
+
   if (currentRoute.includes('membros-vdg')) {
     return 'Membros VDG'
   }
