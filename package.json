@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
@@ -56,7 +56,7 @@
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.372.0",
     "next": "^14.0.0",
-    "next-auth": "^4.24.5",
+    "next-auth": "^4.24.7",
     "next-themes": "^0.2.1",
     "postcss": "8.4.29",
     "react": "18.2.0",
