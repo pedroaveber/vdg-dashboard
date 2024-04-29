@@ -31,57 +31,59 @@ export function useAuthForm() {
   const router = useRouter()
 
   async function signIn({ email, password }: AuthFormType) {
-    try {
-      const session = await FirebaseAuth.signInWithEmailAndPassword({
-        email,
-        password,
-      })
+    // try {
+    const session = await FirebaseAuth.signInWithEmailAndPassword({
+      email,
+      password,
+    })
 
-      const accessToken = await session.user.getIdToken()
+    const accessToken = await session.user.getIdToken()
 
-      if (accessToken) {
-        Cookie.set('VDG_USER_ACCESS_TOKEN', accessToken)
-      } else {
-        throw new Error('Não foi possível obter o token de acesso')
-      }
-
-      const user = await authService.getUserByEmail({
-        email,
-        accessToken,
-      })
-
-      if (!user || user.role === 'user') {
-        toast.error('Usuário não autorizado!')
-        return
-      }
-
-      setIsUserLogged(true)
-      setCurrentuser(user)
-
-      const userPolicies = user.policy
-      const todayMoreTwoDays = getTwoDaysAfterToday()
-
-      const objectToStorage: UserLoggedType = {
-        ...user,
-        expiresIn: todayMoreTwoDays,
-      }
-
-      Cookie.set('VDG_CURRENT_USER', JSON.stringify(objectToStorage), {
-        expires: 2, // 2 days
-      })
-
-      localStorage.setItem('VDG@CURRENT_USER', JSON.stringify(objectToStorage))
-      toast.success('Login realizado com sucesso')
-
-      if (user.role === 'super-admin') {
-        router.push('/banners')
-      } else {
-        router.push(routes[userPolicies[0]])
-      }
-    } catch (error: any) {
-      console.log(error)
-      toast.error('E-mail ou senha inválidos')
+    if (accessToken) {
+      Cookie.set('VDG_USER_ACCESS_TOKEN', accessToken)
+    } else {
+      throw new Error('Não foi possível obter o token de acesso')
     }
+
+    const user = await authService.getUserByEmail({
+      email,
+      accessToken,
+    })
+
+    if (!user || user.role === 'user') {
+      toast.error('Usuário não autorizado!')
+      return
+    }
+
+    setIsUserLogged(true)
+    setCurrentuser(user)
+
+    const userPolicies = user.policy
+    const todayMoreTwoDays = getTwoDaysAfterToday()
+
+    const objectToStorage: UserLoggedType = {
+      ...user,
+      expiresIn: todayMoreTwoDays,
+    }
+
+    Cookie.set('VDG_CURRENT_USER', JSON.stringify(objectToStorage), {
+      expires: 2, // 2 days
+    })
+
+    localStorage.setItem('VDG@CURRENT_USER', JSON.stringify(objectToStorage))
+    toast.success('Login realizado com sucesso')
+
+    console.log(userPolicies[0])
+
+    if (user.role === 'super-admin') {
+      router.push('/banners')
+    } else {
+      router.push(routes[userPolicies[0]])
+    }
+    // } catch (error: any) {
+    //   console.log(error)
+    //   toast.error('E-mail ou senha inválidos')
+    // }
   }
 
   return {

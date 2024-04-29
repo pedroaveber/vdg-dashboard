@@ -1,7 +1,7 @@
 export const useUsers = () => {
   const policies: Record<string, string> = {
     news: 'Notícias',
-    feeds: 'Feeds',
+    feed: 'Feeds',
     events: 'Eventos',
     surveys: 'Enquetes',
     banners: 'Banners',

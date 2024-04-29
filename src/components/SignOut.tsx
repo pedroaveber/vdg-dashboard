@@ -21,12 +21,13 @@ export function SignOut() {
 
   async function handleSignOut() {
     try {
-      FirebaseAuth.signOut()
       localStorage.removeItem('VDG@CURRENT_USER')
       localStorage.removeItem('theme')
       Cookies.remove('VDG_CURRENT_USER')
+      Cookies.remove('VDG_USER_ACCESS_TOKEN')
       Cookies.remove('VDG_USER_POLICY')
       setIsUserLogged(false)
+      FirebaseAuth.signOut()
       router.push('/auth')
       toast.success('Deslogado com sucesso!')
       setTheme('light')

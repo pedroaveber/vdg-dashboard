@@ -56,7 +56,7 @@ export const navItems: Array<NavItem> = [
   {
     href: '/feed',
     name: 'Feed',
-    value: 'feeds',
+    value: 'feed',
     Icon: MessageSquareQuote,
     disabled: false,
   },

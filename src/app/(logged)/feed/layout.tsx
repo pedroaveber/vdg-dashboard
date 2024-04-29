@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
   if (policy) {
     const parsedPolicy = JSON.parse(policy.value) as string[]
 
-    if (!parsedPolicy.includes('feeds')) {
+    if (!parsedPolicy.includes('feed')) {
       redirect('/')
     }
   }

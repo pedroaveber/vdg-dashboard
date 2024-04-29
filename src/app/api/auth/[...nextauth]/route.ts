@@ -5,6 +5,15 @@ import GoogleProvider from 'next-auth/providers/google'
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? ''
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? ''
 
+/*
+  authorization: {
+    params: {
+      scope:
+        'openid https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+    },
+  },
+*/
+
 const authOption: NextAuthOptions = {
   session: {
     strategy: 'jwt',

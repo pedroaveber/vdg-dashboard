@@ -9,7 +9,7 @@ import { socialMediaService } from './services'
 import { Skeleton } from '@/components/skeleton'
 import { toast } from 'react-toastify'
 
-const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
+const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/
 
 const socialMediaFormSchema = z.object({
   facebook: z

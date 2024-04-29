@@ -9,12 +9,10 @@ import {
 } from './createFirstAcessFormSchema'
 
 import { FirebaseAuth } from '@/lib/firebase/auth'
-import { UserService } from '@/lib/firebase/database/user-service'
 import { useUserContext } from '@/contexts/UserContext'
 import { toast } from 'react-toastify'
 import { UserType } from '@/@types/Database'
 import { profileService } from '@/app/(logged)/perfil/services'
-import { usersServices } from '@/app/(logged)/usuarios/services'
 
 interface useFirstAccessProps {
   setShouldDisplayFirstAccessDialog: (shouldDisplay: boolean) => void
@@ -23,7 +21,6 @@ interface useFirstAccessProps {
 
 export function useFirstAcess({
   setShouldDisplayFirstAccessDialog,
-  user,
 }: useFirstAccessProps) {
   const {
     register,
@@ -37,31 +34,15 @@ export function useFirstAcess({
   const { refreshUser, currentUser } = useUserContext()
 
   async function handleChangeUserInfo(data: CreateFirstAcccessFormSchemaType) {
-    if (data.avatar && typeof data.avatar !== 'string') {
-      if (user.avatar) {
-        await UserService.deleteImageFromStorage({
-          url: user.avatar,
-        })
-      }
-
-      const { imagePath } = await UserService.uploadFile({
-        file: data.avatar,
-      })
-
-      data.avatar = imagePath
-    }
-
     try {
+      await FirebaseAuth.updateUserPassword(data.password)
+
       await profileService.update({
         ...currentUser!,
         firstAccess: false,
-        name: data.name,
-        avatar: data.avatar ?? null,
       })
 
       refreshUser({
-        name: data.name,
-        avatar: data.avatar ?? null,
         firstAccess: false,
       })
 

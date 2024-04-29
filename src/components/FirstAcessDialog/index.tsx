@@ -17,18 +17,8 @@ export function FirstAcessDialog({
   shouldDisplayFirstAccessDialog,
   user,
 }: FirstAcessDialogProps) {
-  const {
-    errors,
-    isSubmitting,
-    handleChangeUserInfo,
-    handleSubmit,
-    register,
-    setValue,
-  } = useFirstAcess({ setShouldDisplayFirstAccessDialog, user: user! })
-
-  if (user) {
-    setValue('email', user.email)
-  }
+  const { errors, isSubmitting, handleChangeUserInfo, handleSubmit, register } =
+    useFirstAcess({ setShouldDisplayFirstAccessDialog, user: user! })
 
   return (
     <Dialog.Root
@@ -49,28 +39,6 @@ export function FirstAcessDialog({
             className="mt-[50px] max-h-[400px] w-full space-y-4 overflow-y-auto pr-4"
             onSubmit={handleSubmit(handleChangeUserInfo)}
           >
-            <FormComponents.Avatar
-              setImagePreview={(imagePreview) =>
-                setValue('avatar', imagePreview)
-              }
-            />
-
-            <FormComponents.Input
-              type="text"
-              label="Nome Completo"
-              placeholder="Digite o seu nome"
-              register={register('name')}
-              errorMessage={errors?.name?.message}
-            />
-
-            <FormComponents.Input
-              type="email"
-              label="E-mail"
-              placeholder="Digite o seu e-mail"
-              register={register('email')}
-              readOnly
-            />
-
             <FormComponents.Input
               type="password"
               label="Nova senha"

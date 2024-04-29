@@ -1,7 +1,7 @@
 export const routes: Record<string, string> = {
   banners: '/banners',
   news: '/noticias',
-  feeds: '/feeds',
+  feed: '/feed',
   users: '/usuarios',
   comments: '/comentarios',
   channels: '/channels',

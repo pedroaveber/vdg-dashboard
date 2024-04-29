@@ -1,23 +1,33 @@
 import Cookies from 'js-cookie'
 import { api } from '@/lib/api'
 import { FirebaseAuth } from '@/lib/firebase/auth'
+import { getFromLocalStorage, setLocalStorageItem } from '@/utils/local-storage'
 
 export class Services<T extends { id: string }> {
+  private readonly authTokenKey = 'VDG-USER-ACCESS-TOKEN'
   protected api = api
 
   constructor(public collection: string) {}
 
   protected async getAccessToken() {
-    const accessToken = Cookies.get('VDG_USER_ACCESS_TOKEN')
+    const accessToken = getFromLocalStorage<string>(this.authTokenKey)
+
+    if (accessToken) {
+      return accessToken
+    }
 
     const firebaseAuthToken =
       await FirebaseAuth.auth.currentUser?.getIdToken(true)
 
     if (firebaseAuthToken) {
-      Cookies.set('VDG_USER_ACCESS_TOKEN', firebaseAuthToken)
+      setLocalStorageItem(
+        this.authTokenKey,
+        firebaseAuthToken,
+        1000 * 60 * 5, // 5 minutes
+      )
     }
 
-    return firebaseAuthToken ?? accessToken
+    return firebaseAuthToken
   }
 
   public async create(data: T): Promise<void> {
