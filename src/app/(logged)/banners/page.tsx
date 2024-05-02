@@ -14,6 +14,8 @@ export default function Banners() {
     queryKey: ['banners-general'],
     queryFn: () => bannerService.index(),
     staleTime: 1000 * 60 * 10, // 10 minute
+    retry: 3,
+    retryDelay: 500,
   })
 
   if (error)

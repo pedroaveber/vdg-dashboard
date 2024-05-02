@@ -9,8 +9,6 @@ const ALLOWED_FILE_TYPES = [
   'image/webp',
 ]
 
-const URL_PATTERN = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
-
 export const createFeedFormSchema = z
   .object({
     active: z.coerce.boolean().default(true),
@@ -18,7 +16,15 @@ export const createFeedFormSchema = z
     privacy: z
       .enum(['PUBLIC', 'MEMBERS_ONLY', 'VIP_MEMBERS_ONLY', 'REGISTEREDS'])
       .default('PUBLIC'),
-    link: z.string().optional(),
+    link: z
+      .string()
+      .optional()
+      .refine(
+        (data) => !data || (data.startsWith('https://') && data.length > 14),
+        {
+          message: 'Insira uma URL válida',
+        },
+      ),
     description: z
       .string({
         required_error: 'Texto da Notícia é obrigatório',
@@ -29,14 +35,6 @@ export const createFeedFormSchema = z
     secondaryImagePath: z.any(),
   })
   .superRefine((data, ctx) => {
-    if (data.link && data.link !== '' && !URL_PATTERN.test(data.link)) {
-      ctx.addIssue({
-        code: 'custom',
-        message: 'Insira uma URL válida',
-        path: ['link'],
-      })
-    }
-
     if (data.imagePath && typeof data.imagePath !== 'string') {
       if (data.imagePath && data.imagePath.size > MAX_FILE_SIZE) {
         ctx.addIssue({

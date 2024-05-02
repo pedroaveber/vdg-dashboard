@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie'
 import { api } from '@/lib/api'
 import { FirebaseAuth } from '@/lib/firebase/auth'
 import { getFromLocalStorage, setLocalStorageItem } from '@/utils/local-storage'
@@ -23,7 +22,7 @@ export class Services<T extends { id: string }> {
       setLocalStorageItem(
         this.authTokenKey,
         firebaseAuthToken,
-        1000 * 60 * 5, // 5 minutes
+        1000 * 30, // 30 seconds
       )
     }
 
@@ -49,6 +48,7 @@ export class Services<T extends { id: string }> {
 
   public async index(): Promise<T[]> {
     const accessToken = await this.getAccessToken()
+
     const response = await this.api(`/query/${this.collection}`, {
       method: 'GET',
       headers: {
@@ -62,7 +62,7 @@ export class Services<T extends { id: string }> {
   }
 
   public async get(id: string): Promise<T> {
-    const accessToken = await FirebaseAuth.auth.currentUser?.getIdToken()
+    const accessToken = await this.getAccessToken()
     const response = await this.api('/query', {
       method: 'POST',
       headers: {
