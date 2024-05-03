@@ -71,9 +71,8 @@ export function useAuthForm() {
       })
 
       localStorage.setItem('VDG@CURRENT_USER', JSON.stringify(objectToStorage))
+      localStorage.setItem('@vdg-dashboard:current-user-email:v1.0.0', email)
       toast.success('Login realizado com sucesso')
-
-      console.log(userPolicies[0])
 
       if (user.role === 'super-admin') {
         router.push('/banners')

@@ -1,40 +1,43 @@
-import type { Metadata } from 'next'
+'use client'
 
 import { ToastContainer } from 'react-toastify'
 
 import { Sibdebar } from '@/components/Sidebar'
-import { headers, cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 import 'react-toastify/dist/ReactToastify.css'
 import '@/styles/globals.css'
 
 import { Header } from '@/components/Header'
 import { ThemeProvider } from '@/ThemeProvider'
-import { UserLoggedType } from '@/@types/LocalStorage'
-
-export const metadata: Metadata = {
-  title: 'VDG - Vozes do Gigante',
-}
+import { useEffect, useState } from 'react'
+import { FirebaseAuth } from '@/lib/firebase/auth'
+import { redirect } from 'next/navigation'
+import { Loader2Icon } from 'lucide-react'
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const headersList = headers()
-  const pathname = headersList.get('x-invoke-path') || ''
+  const [isLoading, setIsLoading] = useState(true)
 
-  const credentials = cookies().get('VDG_CURRENT_USER')
-  if (!credentials) return redirect('/auth')
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      FirebaseAuth.auth.onAuthStateChanged((user) => {
+        if (user) {
+          setIsLoading(false)
+        } else {
+          redirect('/auth')
+        }
+      })
+    }
+  }, [])
 
-  const user = JSON.parse(credentials.value) as UserLoggedType
-
-  if (pathname === '/usuarios' && user.role !== 'super-admin') {
-    redirect('/banners')
-  }
-
-  return (
+  return isLoading ? (
+    <div className="flex h-screen w-full items-center justify-center">
+      <Loader2Icon size={64} className="animate-spin" />
+    </div>
+  ) : (
     <ThemeProvider>
       <ToastContainer
         autoClose={3000}
