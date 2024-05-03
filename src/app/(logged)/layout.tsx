@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { FirebaseAuth } from '@/lib/firebase/auth'
 import { redirect } from 'next/navigation'
 import { Loader2Icon } from 'lucide-react'
+import { setLocalStorageItem } from '@/utils/local-storage'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -23,8 +24,11 @@ export default function Layout({ children }: LayoutProps) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      FirebaseAuth.auth.onAuthStateChanged((user) => {
+      FirebaseAuth.auth.onAuthStateChanged(async (user) => {
         if (user) {
+          const accessToken = await user.getIdToken()
+          console.log('accessToken', accessToken)
+          setLocalStorageItem('VDG-USER-ACCESS-TOKEN', accessToken, 1000 * 60) // 1 minute
           setIsLoading(false)
         } else {
           redirect('/auth')
