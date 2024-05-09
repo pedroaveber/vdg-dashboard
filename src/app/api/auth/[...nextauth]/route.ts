@@ -9,8 +9,7 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? ''
   authorization: {
     params: {
       scope:
-        'openid https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.channel-memberships.creator',
-    },
+            },
   },
 */
 
@@ -24,7 +23,8 @@ const authOption: NextAuthOptions = {
       clientSecret: GOOGLE_CLIENT_SECRET,
       // @ts-ignore
       scope:
-        'openid profile email https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+        'openid https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+      // 'openid profile email https://www.googleapis.com/auth/youtube.channel-memberships.creator',
     }),
   ],
   callbacks: {
